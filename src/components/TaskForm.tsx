@@ -37,15 +37,16 @@ function TasksForm() {
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    if(params.id){
-      dispatch(updateTask(task))
-    }else{
-    dispatch(
-      addTask({
-        ...task,
-        id: uuid(),
-      })
-    )};
+    if (params.id) {
+      dispatch(updateTask(task));
+    } else {
+      dispatch(
+        addTask({
+          ...task,
+          id: uuid(),
+        })
+      );
+    }
     navigate("/");
   };
 
@@ -57,19 +58,32 @@ function TasksForm() {
     if (params.id && Object(tasks).find((task: any) => task.id === params.id)) {
       setTask(Object(tasks).find((task: any) => task.id === params.id));
     }
-  },[]);
+  }, []);
 
   return (
     <>
       <ToastContainer />
       {(() => {
-        if (!Object(tasks).find((task: any) => task.id === params.id) && params.id) {
+        if (
+          !Object(tasks).find((task: any) => task.id === params.id) &&
+          params.id
+        ) {
           notify();
         }
       })()}
       <form onSubmit={handleSubmit} className="bg-zinc-800 max-w-sm p-4 w-full">
+        {Object(tasks).find((task: any) => task.id === params.id) &&
+        params.id ? (
+          <h1 className="block font-bold mb-1 flex justify-center h-full">
+            Edit Task
+          </h1>
+        ) : (
+          <h1 className="block font-bold mb-1 flex justify-center h-full">
+            New Task
+          </h1>
+        )}
         <label htmlFor="title" className="block text-sm font-bold mb-1">
-          Task:
+          Title:
         </label>
         <input
           name="title"
@@ -78,7 +92,6 @@ function TasksForm() {
           value={task.title}
           onChange={handleChanges}
           className="w-full p-2 rounded-md bg-zinc-600 mb-2"
-          
         ></input>
         <label htmlFor="description" className="block text-sm font-bold mb-1">
           Description
