@@ -15,7 +15,7 @@ function TasksList() {
   return (
     <div className="w-4/6">
       <header className="flex justify-between items-center py-4">
-        <h1>Tasks {Object.keys(tasks).length}</h1>
+        <h1>Total Tasks: {Object.keys(tasks).length}</h1>
         <Link to="/new" className="bg-indigo-600 px-2 py-1 rounded-sm text-sm">New Task</Link>
       </header>
 
