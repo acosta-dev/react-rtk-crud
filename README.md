@@ -1,5 +1,5 @@
 # react-rtk-crud
-Simple To-Do App Using React, Redux and Tailwind
+Simple To-Do App Using React, Redux and Tailwind CSS
 <p align="center">
 <img src="./Captures/Tasks List.png"
      alt="Tasks Lists"
